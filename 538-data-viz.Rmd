@@ -209,7 +209,7 @@ mtext("SHARE OF RESPONDENTS",side=3, at=-25)
 
 ### Faceting with ggplot and adding summary statistics    
 
-```{r}
+```{r, fig.cap="Fifth figure in article made in ggplot. "}
 
 dat5 <- rawDat %>% select(c(61, 95)) %>% rename(answer=q0018)
 
@@ -252,13 +252,20 @@ mylabels <- dat5 %>% filter(response=="yes") %>% group_by(answer, age3) %>%
   summarise(label=round(percent)) %>%
   mutate(percent=-10, response="yes") 
 
-p5 + geom_text(data=mylabels, aes(label=label))
+p5 <- p5 + geom_text(data=mylabels, aes(label=label))
+
+ggdraw(p5) +
+  draw_text("How often do you like to be the one paying for dates?",
+                      x = 0.01, y = 0.98, hjust = 0, vjust = 1)
+
 
 ```
 
+\FloatBarrier
+
 ### Combining multiple plots with ggplot
 
-```{r fig1, eval=FALSE}
+```{r fig1, fig.cap="First figure from article made in ggplot."}
 
 dat1 <- rawDat %>% select(q0005, age3)
 
@@ -280,14 +287,15 @@ fig1a %>%
   geom_bar(stat="identity") + coord_flip() +
   scale_fill_manual(values=rev(col3)) +
   scale_y_continuous(position = "right") +
-  xlab("") + ylab("") + ggtitle("Do you think that society puts presson men in a way that is unhealthy or bad for them") +
+  xlab("") + ylab("") + ggtitle("Do you think that society puts pressure \n on men in a way that is unhealthy or bad for them") +
   theme_fivethirtyeight() +
   theme(legend.position="none",
         axis.text.x  = element_text(size=10),
         axis.text.y=element_blank(),
         axis.ticks.y=element_blank(),
         plot.margin = margin(0, 0.5, 0, 2, "cm"),
-        plot.title = element_text(size=14)) +
+        plot.title = element_text(size=14),
+        panel.grid = element_blank()) +
   geom_text(x=1, y=10, label="Yes", size=5) +
   geom_text(x=1, y=70, label="No", size=5) -> p1a
 
@@ -306,7 +314,8 @@ fig1b %>%
   theme_fivethirtyeight() +
   theme(legend.position="none",
         axis.ticks.y=element_blank(),
-        plot.margin = margin(1, 0.5, 1.5, 0.5, "cm"))  -> p1b
+        plot.margin = margin(1, 0.5, 1.5, 0.5, "cm"),
+        panel.grid = element_blank())  -> p1b
 
 plot_grid(p1a, p1b, ncol = 1, rel_heights = c(.25, .75))
 

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1551474656531.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "D4E0B7E3",
+    "lastKnownWriteTime" : 1551474596,
+    "last_content_update" : 1551474596,
+    "path" : "~/Desktop/538/538-data-viz.Rmd",
+    "project_path" : "538-data-viz.Rmd",
+    "properties" : {
+        "chunk_output_type" : "console"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
